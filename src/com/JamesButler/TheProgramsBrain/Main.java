@@ -32,16 +32,19 @@ public class Main {
 
         chessBoard.testAddArray();
         chessBoard.testPrintArray();*/
-
+        chessBoard.testAddWhiteToArray(); //or black.
+        chessBoard.testPrintWhiteArray(); //prints white pieces array.
 
         chessBoard.printSomethingFancy();
-        chessBoard.pieceMove(6, 6);
+        chessBoard.pieceMove(7, 7);
 
         chessBoard.printSomethingFancy();
 
         chessBoard.testAddWhiteToArray(); //or black.
         chessBoard.testPrintWhiteArray(); //prints white pieces array.
 
+        chessBoard.pieceMove(6, 7);
+        chessBoard.printSomethingFancy();
         /*chessBoard.testPrint(7, 7);*/
 
     }

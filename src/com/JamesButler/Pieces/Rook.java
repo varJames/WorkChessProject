@@ -13,7 +13,25 @@ public class Rook extends Piece {
     }
 
 //Movement
-    public /*Tile[][]*/ boolean getPossibleMoves(ChessBoard test) {
+public /*Tile[][]*/ boolean getPossibleMoves(ChessBoard test, int one, int two) {
+    /*Tile[][] posMove = new Tile[8][8];*/
+
+    //x is column //y is row
+    var curPos = test.getTile(this.piecePosX, this.piecePosY);
+
+    //could do getPiecePosColumn()
+    /*var allowedMove = test.getTile();*/ //the logic Not done.
+
+    if (true) {
+
+        return true;
+    } else {
+        return false;
+    }
+}
+
+    @Override
+    public boolean getPossibleMoves(ChessBoard test) {
         return false;
     }
 //-

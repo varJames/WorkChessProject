@@ -16,6 +16,7 @@ abstract public class Piece {
 
 //Array of possible movements;
     public abstract /*Tile[][]*/ boolean getPossibleMoves(ChessBoard test);
+    public abstract boolean getPossibleMoves(ChessBoard chessBoard, int newMoveColumn, int newMoveRow);
 
     public enum pieceColour {
         black, white;

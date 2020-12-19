@@ -19,23 +19,43 @@ public class Pawn extends Piece {
 
 
 //Movement
-   public /*Tile[][]*/ boolean getPossibleMoves(ChessBoard test) {
+   public /*Tile[][]*/ boolean getPossibleMoves(ChessBoard test, int one, int two) {
        /*Tile[][] posMove = new Tile[8][8];*/
 
-       var curPos = test.getTile(this.piecePosX, this.piecePosY);
-       var newPos = test.getTile(this.piecePosX - 1, this.piecePosY);
+       System.out.println(test.getTile(this.getPiecePosColumn(), this.getPiecePosRow()));
+       //x is column //y is row
+       var curPos = test.getTile(getPiecePosColumn(), getPiecePosRow());
 
-       var testMove = test.getTile(2, 2);
-       if (testMove == newPos) {
+       //could do getPiecePosColumn()
+       var newMove = test.getTile(getPiecePosColumn(), getPiecePosRow() - 1);
+
+       System.out.println(newMove);
+
+       if (test.getTile(newMove.getTilePosX(), newMove.getTilePosY()) == test.getTile(one, two)) {
            return true;
        } else {
            return false;
        }
    }
 
-
-
+    @Override
+    public boolean getPossibleMoves(ChessBoard test) {
+        return false;
+    }
     //-
+    //getters
+    public Piece.pieceType getPieceType() {
+        return this.pieceType;
+    }
+
+    public int getPiecePosColumn() {
+       return this.piecePosX;
+    }
+
+    public int getPiecePosRow() {
+        return this.piecePosY;
+    }
+
     //setters
     public void setPieceName(Piece.pieceType pieceName) {
         this.pieceName = pieceName;
@@ -45,10 +65,7 @@ public class Pawn extends Piece {
         return this.pieceType = pieceType;
     }
 
-    //getters
-    public Piece.pieceType getPieceType() {
-        return this.pieceType;
-    }
+
 
 
 //printing logic.

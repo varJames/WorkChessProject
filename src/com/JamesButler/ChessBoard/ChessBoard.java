@@ -95,13 +95,13 @@ public class ChessBoard {
                     new Pawn(oldRow - newMoveRow, oldColumn - newMoveColumn, Piece.pieceColour.white));
             this.chessBoard[oldColumn][oldRow] = new Tile(oldColumn, oldRow, null);*/
 
-       /*if (getTile(oldColumn, oldRow).getPiece().getPossibleMoves(this)) {*/
-           this.chessBoard[newMoveRow - 1][newMoveColumn - 1] = new Tile(newMoveRow, newMoveColumn,
-                   new Pawn(newMoveRow - 1, newMoveColumn - 1, Piece.pieceColour.white));
-           this.chessBoard[oldColumn][oldRow] = new Tile(oldColumn, oldRow, null);
-       /*} else {
+       if (getTile(oldColumn - 1, oldRow - 1).getPiece().getPossibleMoves(this, newMoveColumn, newMoveRow) == true) {
+           this.chessBoard[newMoveRow - 1][newMoveColumn - 1] = new Tile(newMoveRow + 1, newMoveColumn + 1,
+                   new Pawn(newMoveRow + 1, newMoveColumn + 1, Piece.pieceColour.white));
+           this.chessBoard[oldColumn - 1][oldRow - 1] = new Tile(oldColumn - 1, oldRow - 1, null);
+       } else {
            System.out.println("no");
-       }*/
+       }
     }
 //-
 
@@ -227,7 +227,6 @@ public class ChessBoard {
             for (int columnsOfArray = 0; columnsOfArray < 8; ++columnsOfArray) {
                 if (chessBoard[rowOfArray][columnsOfArray].isTileOccupied == false) {
                     System.out.print(" x");
-
                 } else {
                     if (Objects.nonNull(chessBoard[rowOfArray][columnsOfArray]) &&
                             chessBoard[rowOfArray][columnsOfArray].getPiece().getPieceColour() == Piece.pieceColour.white) {
