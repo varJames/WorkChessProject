@@ -2,6 +2,7 @@ package com.JamesButler.ChessBoard;
 
 import com.JamesButler.Pieces.*;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class ChessBoard {
@@ -27,7 +28,7 @@ public class ChessBoard {
     }
 
     //add pieces to array though.
-    public void testAddArray() {
+    public void testAddWhiteToArray() {
         int arrayIterationCounter = 0;
         for (int rowOfArray = 0; rowOfArray < 8; ++rowOfArray) {
             for (int columnsOfArray = 0; columnsOfArray < 8; ++columnsOfArray) {
@@ -35,21 +36,40 @@ public class ChessBoard {
                         this.chessBoard[rowOfArray][columnsOfArray].hasPiece.getPieceColour() == Piece.pieceColour.white) {
                     whitePiecesArray[arrayIterationCounter] = chessBoard[rowOfArray][columnsOfArray].getPiece();
                     /*System.out.println(whitePiecesArray[arrayIterationCounter]);*/
-                    this.chessBoard[0][0].getPossibleMoves(this);
+                    /*this.chessBoard[0][0].getPossibleMoves(this);*/
                     arrayIterationCounter++;
                 }
             }
         }
     }
 
-    public Piece testPrintArray() {
+    public void testAddBlackToArray() {
+        int arrayIterationCounter = 0;
+        for (int rowOfArray = 0; rowOfArray < 8; ++rowOfArray) {
+            for (int columnsOfArray = 0; columnsOfArray < 8; ++columnsOfArray) {
+                if (this.chessBoard[rowOfArray][columnsOfArray].getPiece() != null &&
+                        this.chessBoard[rowOfArray][columnsOfArray].hasPiece.getPieceColour() == Piece.pieceColour.black) {
+                    blackPiecesArray[arrayIterationCounter] = chessBoard[rowOfArray][columnsOfArray].getPiece();
+                    /*System.out.println(whitePiecesArray[arrayIterationCounter]);*/
+                    arrayIterationCounter++;
+                }
+            }
+        }
+    }
+
+    public void testPrintWhiteArray() {
         for (int i = 0; i < whitePiecesArray.length; i++) {
             System.out.println(whitePiecesArray[i]);
         }
-        return null;
     }
 
-//MOVeMENT
+    public void testPrintBlackArray() {
+        for (int i = 0; i < blackPiecesArray.length; i++) {
+            System.out.println(blackPiecesArray[i]);
+        }
+    }
+
+    //MOVeMENT
     public Tile getTile(int x, int y) {
         return chessBoard[x][y];
     }
@@ -67,18 +87,21 @@ public class ChessBoard {
         System.out.println("\n");
         return uInewRow;
     }
-//chessBoard[7][0] = new Tile(7, 0,
+
     public void pieceMove(int oldColumn, int oldRow) {
         int newMoveRow = getUserMoveRow();
         int newMoveColumn = getUserMoveColumn();
-        /*if (this.chessBoard[oldRow][oldColumn].getPiece().getPossibleMoves(this) == true ) {*/
-            //getuserMove
-            this.chessBoard[oldRow - newMoveRow][oldColumn - newMoveColumn] = new Tile(oldRow - newMoveRow, oldColumn - newMoveColumn,
+            /*this.chessBoard[oldRow - newMoveRow][oldColumn - newMoveColumn] = new Tile(oldRow - newMoveRow, oldColumn - newMoveColumn,
                     new Pawn(oldRow - newMoveRow, oldColumn - newMoveColumn, Piece.pieceColour.white));
-            this.chessBoard[oldColumn][oldRow] = new Tile(oldColumn, oldRow, null);
-       /* } else {
+            this.chessBoard[oldColumn][oldRow] = new Tile(oldColumn, oldRow, null);*/
 
-        }*/
+       /*if (getTile(oldColumn, oldRow).getPiece().getPossibleMoves(this)) {*/
+           this.chessBoard[newMoveRow - 1][newMoveColumn - 1] = new Tile(newMoveRow, newMoveColumn,
+                   new Pawn(newMoveRow - 1, newMoveColumn - 1, Piece.pieceColour.white));
+           this.chessBoard[oldColumn][oldRow] = new Tile(oldColumn, oldRow, null);
+       /*} else {
+           System.out.println("no");
+       }*/
     }
 //-
 
@@ -206,8 +229,15 @@ public class ChessBoard {
                     System.out.print(" x");
 
                 } else {
-                    System.out.print(" o");
-
+                    if (Objects.nonNull(chessBoard[rowOfArray][columnsOfArray]) &&
+                            chessBoard[rowOfArray][columnsOfArray].getPiece().getPieceColour() == Piece.pieceColour.white) {
+                        System.out.print("\u001B[31m" + " W");
+                        System.out.print("\u001B[30m");
+                    }
+                    if (Objects.nonNull(chessBoard[rowOfArray][columnsOfArray]) &&
+                            chessBoard[rowOfArray][columnsOfArray].getPiece().getPieceColour() == Piece.pieceColour.black) {
+                        System.out.print(" B");
+                    }
                 }
             }
             System.out.print("\n");

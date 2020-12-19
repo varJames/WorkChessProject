@@ -52,7 +52,7 @@ public class Tile {
     }
 
 //MOVeMENT
-    public /*Tile[][]*/ boolean getPossibleMoves(ChessBoard test) {
+    public boolean getPossibleMoves(ChessBoard test) {
        return getPiece().getPossibleMoves(test);
     }
 //-

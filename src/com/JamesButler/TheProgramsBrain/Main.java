@@ -39,6 +39,9 @@ public class Main {
 
         chessBoard.printSomethingFancy();
 
+        chessBoard.testAddWhiteToArray(); //or black.
+        chessBoard.testPrintWhiteArray(); //prints white pieces array.
+
         /*chessBoard.testPrint(7, 7);*/
 
     }

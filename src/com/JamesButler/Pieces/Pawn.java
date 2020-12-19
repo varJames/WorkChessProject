@@ -17,19 +17,25 @@ public class Pawn extends Piece {
         setPieceType(Piece.pieceType.Pawn);
     }
 
+
 //Movement
    public /*Tile[][]*/ boolean getPossibleMoves(ChessBoard test) {
        /*Tile[][] posMove = new Tile[8][8];*/
 
        var curPos = test.getTile(this.piecePosX, this.piecePosY);
-       var newPos = test.getTile(this.piecePosX + 1, this.piecePosY);
+       var newPos = test.getTile(this.piecePosX - 1, this.piecePosY);
 
-       if (curPos.getPiece().getPieceColour() == newPos.getPiece().getPieceColour()) {
+       var testMove = test.getTile(2, 2);
+       if (testMove == newPos) {
+           return true;
+       } else {
            return false;
        }
-       return true;
    }
-//-
+
+
+
+    //-
     //setters
     public void setPieceName(Piece.pieceType pieceName) {
         this.pieceName = pieceName;
